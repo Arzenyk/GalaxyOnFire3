@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    public GameObject explosionPrefab; // Asignalo en el Inspector
+
     public float health = 3f;
     public float moveSpeed = 5f;
     public float stopDistance = 30f;                 // Distancia mínima para dejar de avanzar
@@ -58,8 +61,12 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Projectile"))
         {
+            // Instanciamos la explosión en la posición actual
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+            // Destruir este objeto y el proyectil
             Destroy(other.gameObject);
-            TakeDamage(1f);
+            Destroy(gameObject);
         }
     }
 

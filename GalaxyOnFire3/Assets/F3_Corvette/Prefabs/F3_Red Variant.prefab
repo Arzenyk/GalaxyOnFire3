@@ -149,6 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7efb5a9c9ab85845812702798a3d2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 7047924125982728374, guid: 153ae5d6e28e0be4fbb11ce45a13ecf0,
+    type: 3}
   health: 3
   moveSpeed: 5
   stopDistance: 30

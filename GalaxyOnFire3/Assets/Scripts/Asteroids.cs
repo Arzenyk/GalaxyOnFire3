@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Asteroids : MonoBehaviour
 {
+    public GameObject explosionPrefab; // Asignalo en el Inspector
+
     public float moveSpeed = 5f;
 
     void Update()
@@ -12,11 +14,14 @@ public class Asteroids : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Si choca con un proyectil, se destruye
         if (other.CompareTag("Projectile"))
         {
-            Destroy(other.gameObject);  // Destruir el proyectil
-            Destroy(gameObject);        // Destruir el asteroide
+            // Instanciamos la explosión en la posición actual
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+            // Destruir este objeto y el proyectil
+            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
     }
 }
