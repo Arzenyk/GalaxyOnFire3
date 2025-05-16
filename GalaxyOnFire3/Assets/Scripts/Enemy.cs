@@ -2,44 +2,73 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float health = 3f;              // Cantidad de vida
-    public float moveSpeed = 5f;           // Velocidad de movimiento
+    public float health = 3f;
+    public float moveSpeed = 5f;
+    public float stopDistance = 30f;                 // Distancia mínima para dejar de avanzar
+    public GameObject projectilePrefab;
+    public float fireRate = 2f;                      // Dispara cada 2 segundos
+    public float projectileSpeed = 20f;
+    public Transform firePoint;                      // Punto desde donde dispara
 
     private Transform target;
+    private float fireCooldown;
 
     void Start()
     {
-        // Buscamos la nave del jugador usando el tag "Player"
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
-        if (target != null)
+        if (target == null) return;
+
+        float distance = Vector3.Distance(transform.position, target.position);
+
+        if (distance > stopDistance)
         {
-            // Moverse hacia la nave
+            // Si está lejos, se acerca al jugador
             Vector3 direction = (target.position - transform.position).normalized;
             transform.position += direction * moveSpeed * Time.deltaTime;
         }
+
+        // Disparo automático con cooldown
+        fireCooldown -= Time.deltaTime;
+        if (fireCooldown <= 0f)
+        {
+            Shoot();
+            fireCooldown = fireRate;
+        }
+
+        // Mirar hacia el jugador
+        Vector3 lookDir = target.position - transform.position;
+        lookDir.y = 0;
+        transform.rotation = Quaternion.LookRotation(lookDir);
+    }
+
+    void Shoot()
+    {
+        if (projectilePrefab == null || firePoint == null) return;
+
+        GameObject bullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.velocity = firePoint.forward * projectileSpeed;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Si choca con un proyectil, baja la vida
         if (other.CompareTag("Projectile"))
         {
-            Destroy(other.gameObject); // Destruye el proyectil
-            TakeDamage(1f);            // Recibe 1 punto de daño
+            Destroy(other.gameObject);
+            TakeDamage(1f);
         }
     }
 
     void TakeDamage(float amount)
     {
         health -= amount;
-
         if (health <= 0)
         {
-            Destroy(gameObject); // Destruir al enemigo
+            Destroy(gameObject);
         }
     }
 }
