@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public DynamicCamera cameraScript; // Asigná esto en el Inspector
 
     public float moveSpeed = 10f;
     public float verticalSpeed = 5f;
@@ -21,6 +22,28 @@ public class PlayerMovement : MonoBehaviour
     private float verticalInput = 0f;
 
     private Quaternion targetRotation;
+
+    void Start()
+    {
+        if (cameraScript == null)
+        {
+            // Intenta encontrar automáticamente el script en la cámara principal
+            Camera mainCam = Camera.main;
+            if (mainCam != null)
+            {
+                cameraScript = mainCam.GetComponent<DynamicCamera>();
+                if (cameraScript == null)
+                {
+                    Debug.LogError("La Main Camera no tiene el script DynamicCamera.");
+                }
+            }
+            else
+            {
+                Debug.LogError("No se encontró ninguna Main Camera en la escena.");
+            }
+        }
+    }
+
 
     void Update()
     {
@@ -52,7 +75,17 @@ public class PlayerMovement : MonoBehaviour
     public void SetForward(float value)
     {
         forwardInput = value;
+
+        if (cameraScript != null)
+        {
+            cameraScript.SetBoost(value > 0.1f);
+        }
+        else
+        {
+            Debug.LogWarning("cameraScript no está asignado en PlayerMovement.");
+        }
     }
+
 
     public void SetVertical(float value)
     {
