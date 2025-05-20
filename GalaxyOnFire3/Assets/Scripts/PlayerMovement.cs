@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 10f;
     public float verticalSpeed = 5f;
     public float turnSpeed = 50f;
+    
 
     // Suavizado de rotación
     public float rotationSmoothness = 5f;
@@ -79,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         if (cameraScript != null)
         {
             cameraScript.SetBoost(value > 0.1f);
+            forwardInput = value * 10;
         }
         else
         {
