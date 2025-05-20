@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public DynamicCamera cameraScript; // Asigná esto en el Inspector
+    public DynamicCamera cameraScript;
 
     public float moveSpeed = 10f;
     public float verticalSpeed = 5f;

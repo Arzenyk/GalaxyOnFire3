@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public GameObject explosionPrefab; // Asignalo en el Inspector
+    public GameObject explosionPrefab;
 
     public float health = 3f;
     public float moveSpeed = 5f;
