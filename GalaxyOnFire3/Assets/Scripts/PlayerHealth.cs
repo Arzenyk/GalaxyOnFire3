@@ -19,7 +19,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (other.CompareTag("EnemyProjectile"))
         {
-            // Destruir este objeto y el proyectil
             Destroy(other.gameObject);
             MeshRenderer.enabled = false;
             //Time.timeScale = 0;
@@ -29,7 +28,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            // Destruir este objeto y el proyectil
             Destroy(other.gameObject);
             MeshRenderer.enabled = false;
             //Time.timeScale = 0;
