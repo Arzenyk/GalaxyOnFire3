@@ -178,10 +178,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 55.859932
-  m_Height: 111.719864
+  m_Radius: 37.246876
+  m_Height: 74.49375
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -1.1584435, y: -11.947704, z: 1.26831325e-14}
 --- !u!54 &660884609320554856
 Rigidbody:
   m_ObjectHideFlags: 0

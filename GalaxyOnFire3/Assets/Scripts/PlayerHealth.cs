@@ -11,28 +11,22 @@ public class PlayerHealth : MonoBehaviour
     public MeshRenderer MeshRenderer;
     public Text perdiste;
     public Button reintentar;
+    public PlayerMovement playerMovement;
+    public PlayerShield playerShield;
+    public PlayerShooting playerShooting;
 
     void OnTriggerEnter(Collider other)
     {
-        // Instanciamos la explosión en la posición actual
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-
         if (other.CompareTag("EnemyProjectile"))
         {
             Destroy(other.gameObject);
-            MeshRenderer.enabled = false;
-            //Time.timeScale = 0;
-            perdiste.text = "Perdiste";
-            reintentar.enabled = true;
+            TakeDamage(1);
         }
 
         if (other.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
-            MeshRenderer.enabled = false;
-            //Time.timeScale = 0;
-            perdiste.text = "Perdiste";
-            reintentar.enabled = true;
+            //Destroy(other.gameObject);
+            TakeDamage(1);
         }
     }
 
@@ -41,7 +35,17 @@ public class PlayerHealth : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            if (playerMovement != null)
+            {
+                explosionPrefab.SetActive(true);
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                playerMovement.LockControls();
+                playerShooting.LockControls();
+                playerShield.LockControls();
+            }
+            MeshRenderer.enabled = false;
+            perdiste.text = "Perdiste";
+            reintentar.gameObject.SetActive(true);
         }
     }
 

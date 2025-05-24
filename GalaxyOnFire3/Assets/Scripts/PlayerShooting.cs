@@ -5,6 +5,8 @@ public class PlayerShooting : MonoBehaviour
     public GameObject projectilePrefab;  // Prefab del proyectil
     public Transform shootPoint;         // Lugar desde donde se dispara
     public float shootForce = 20f;       // Fuerza del disparo
+    private bool controlsLocked = false;
+    public PlayerMovement playerMovement;
 
     void Start()
     {
@@ -16,6 +18,9 @@ public class PlayerShooting : MonoBehaviour
     // Este método se llama desde el botón de disparo
     public void Fire()
     {
+        if (controlsLocked)
+            return;
+
         // Crear el proyectil en la posición y rotación del punto de disparo
         GameObject newProjectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
 
@@ -25,5 +30,10 @@ public class PlayerShooting : MonoBehaviour
 
         // Destruir el proyectil automáticamente después de 5 segundos
         Destroy(newProjectile, 10f);
+    }
+
+    public void LockControls()
+    {
+        controlsLocked = true;
     }
 }

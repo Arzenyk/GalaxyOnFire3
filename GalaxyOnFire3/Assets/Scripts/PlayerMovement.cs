@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public DynamicCamera cameraScript;
 
+    private bool controlsLocked = false;
+
     public float moveSpeed = 10f;
     public float verticalSpeed = 5f;
     public float turnSpeed = 50f;
@@ -23,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private float verticalInput = 0f;
 
     private Quaternion targetRotation;
+
+    public Slider forwardSlider; // Asignar en el Inspector
+    public Slider verticalSlider; // Asignar en el Inspector
+    public Button escudo; // Asignar en el Inspector
+    public Button disparo; // Asignar en el Inspector
+    public ParticleSystem particulasVelocidad;
 
     void Start()
     {
@@ -48,6 +56,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (controlsLocked)
+            return;
+
         // Movimiento hacia adelante/atrás
         transform.Translate(Vector3.forward * forwardInput * moveSpeed * Time.deltaTime);
 
@@ -71,6 +82,18 @@ public class PlayerMovement : MonoBehaviour
 
         // Interpolamos hacia esa rotación suavemente
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmoothness);
+    }
+
+    public void LockControls()
+    {
+        controlsLocked = true;
+        verticalSlider.interactable = false;
+        forwardSlider.interactable = false;
+        escudo.interactable = false;
+        disparo.interactable = false;
+        particulasVelocidad.gameObject.SetActive(false);
+        forwardInput = 0f;
+        verticalInput = 0f;
     }
 
     public void SetForward(float value)
