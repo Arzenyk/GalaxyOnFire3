@@ -61,12 +61,9 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Projectile"))
         {
-            // Instanciamos la explosión en la posición actual
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-
-            // Destruir este objeto y el proyectil
+            TakeDamage(1);
+            // Destruir el proyectil
             Destroy(other.gameObject);
-            Destroy(gameObject);
         }
     }
 
@@ -75,6 +72,7 @@ public class Enemy : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

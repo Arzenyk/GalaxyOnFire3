@@ -945,7 +945,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4625560088099525221, guid: 3bb2914eb9fba82429a974019a890001,
     type: 3}
   shootPoint: {fileID: 1516245211}
-  shootForce: 5000
+  shootForce: 100
   playerMovement: {fileID: 618682254}
 --- !u!114 &618682254
 MonoBehaviour:
@@ -964,7 +964,7 @@ MonoBehaviour:
   verticalSpeed: 5
   turnSpeed: 50
   rotationSmoothness: 5
-  maxTiltAngle: 30
+  maxTiltAngle: 90
   maxPitchAngle: 45
   forwardSlider: {fileID: 1013961865}
   verticalSlider: {fileID: 143047892}
@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc86bd13266ead541afc578356f70b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 3
   explosionPrefab: {fileID: 222419256}
   MeshRenderer: {fileID: 618682258}
   perdiste: {fileID: 708404952}
@@ -1024,6 +1024,7 @@ MonoBehaviour:
   playerMovement: {fileID: 618682254}
   playerShield: {fileID: 1762593765}
   playerShooting: {fileID: 618682253}
+  player: {fileID: 618682252}
 --- !u!1 &634215068
 GameObject:
   m_ObjectHideFlags: 0

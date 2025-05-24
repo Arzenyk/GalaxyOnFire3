@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerShield playerShield;
     public PlayerShooting playerShooting;
+    public GameObject player;
 
     void OnTriggerEnter(Collider other)
     {
@@ -42,10 +43,12 @@ public class PlayerHealth : MonoBehaviour
                 playerMovement.LockControls();
                 playerShooting.LockControls();
                 playerShield.LockControls();
+                //player.tag = "Untagged";
             }
             MeshRenderer.enabled = false;
             perdiste.text = "Perdiste";
             reintentar.gameObject.SetActive(true);
+
         }
     }
 
