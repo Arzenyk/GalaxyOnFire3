@@ -103,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         if (cameraScript != null)
         {
             cameraScript.SetBoost(value > 0.1f);
+            cameraScript.SetFOV(value > 0.01f);
             forwardInput = value * 10;
         }
         else

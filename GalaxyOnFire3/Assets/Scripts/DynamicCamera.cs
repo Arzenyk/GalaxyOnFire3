@@ -10,6 +10,12 @@ public class DynamicCamera : MonoBehaviour
 
     private float targetZ;
 
+    // FOV transition variables
+    public float normalFOV = 60f;
+    public float boostedFOV = 90f;
+    public float fovSmoothSpeed = 5f;
+    private float targetFOV;
+
     // Esto lo llama el PlayerMovement cuando cambia el input
     public void SetBoost(bool boosting)
     {
@@ -25,9 +31,17 @@ public class DynamicCamera : MonoBehaviour
         }
     }
 
+    public void SetFOV(bool boosting)
+    {
+        targetFOV = boosting ? boostedFOV : normalFOV;
+    }
+
     void Start()
     {
         targetZ = normalZ;
+        targetFOV = normalFOV;
+        if (Camera.main != null)
+            Camera.main.fieldOfView = normalFOV;
     }
 
     void LateUpdate()
@@ -35,5 +49,11 @@ public class DynamicCamera : MonoBehaviour
         Vector3 localPos = transform.localPosition;
         localPos.z = Mathf.Lerp(localPos.z, targetZ, Time.deltaTime * smoothSpeed);
         transform.localPosition = localPos;
+
+        // Smoothly interpolate FOV
+        if (Camera.main != null)
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * fovSmoothSpeed);
+        }
     }
 }
