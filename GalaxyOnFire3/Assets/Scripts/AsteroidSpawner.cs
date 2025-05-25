@@ -3,6 +3,7 @@ using UnityEngine;
 public class AsteroidSpawner : MonoBehaviour
 {
     public GameObject asteroidPrefab;
+    public GameObject asteroidPrefab2;
     public float spawnRate = 2f;               // Cada cuántos segundos aparece uno
     public float spawnDistance = 50f;          // Distancia al frente de la nave
     public float spawnRange = 20f;             // Variación lateral y vertical
@@ -11,7 +12,7 @@ public class AsteroidSpawner : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform; // Asegurate de que tu nave tenga este tag
+        player = GameObject.FindWithTag("Player").transform;
         InvokeRepeating(nameof(SpawnAsteroid), 1f, spawnRate);
     }
 
@@ -27,6 +28,7 @@ public class AsteroidSpawner : MonoBehaviour
         Quaternion randomRot = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
         Instantiate(asteroidPrefab, spawnPos, randomRot);
+        Instantiate(asteroidPrefab2, spawnPos, randomRot);
     }
 }
 

@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject escudo;
-    public PlayerShield playerShield; // Referencia al script PlayerShield
-   
     public GameObject explosionPrefab;
     public GameObject enemy;
 
@@ -22,9 +19,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerShield = escudo.GetComponent<PlayerShield>();
     }
 
     void Update()
@@ -72,7 +67,7 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.CompareTag("Escudo") && playerShield.escudoActive)
+        if (other.CompareTag("Escudo"))
         {
             enemy.GetComponent<Enemy>().EnemyTakeDamage(10f);
             Debug.Log("Golpe con escudo");

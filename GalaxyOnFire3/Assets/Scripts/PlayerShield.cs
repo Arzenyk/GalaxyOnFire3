@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerShield : MonoBehaviour
@@ -14,13 +13,13 @@ public class PlayerShield : MonoBehaviour
         if (controlsLocked)
             return;
 
-        Invoke("DeactivateObject", 100f);
-        Escudo.gameObject.SetActive(true);
+        Invoke(nameof(DeactivateObject), 3f);
+        Escudo.SetActive(true);
         escudoActive = true;
     }
     public void DeactivateObject()
     {
-        Escudo.gameObject.SetActive(false); // Deactivate
+        Escudo.SetActive(false); // Deactivate
         escudoActive = false;
     }
 

@@ -30,9 +30,9 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(1);
         }
 
-        if (other.CompareTag("Enemy") && playerShield.escudoActive)
+        if (other.CompareTag("Enemy"))
         {
-            TakeDamage(0);
+            TakeDamage(5);
         }
     }
 

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8029672121676818348}
   - component: {fileID: 2358016789552855006}
   - component: {fileID: 5570708407448860106}
-  - component: {fileID: 8595254918568933759}
   - component: {fileID: 4273872276590563767}
   m_Layer: 0
   m_Name: escudo
@@ -29,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8024069667225759447}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.01, y: -0.49476847, z: 6.7099996}
   m_LocalScale: {x: 46.3, y: 25.7, z: 30.3}
   m_ConstrainProportionsScale: 0
@@ -105,23 +104,8 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.78
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8595254918568933759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8024069667225759447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5c19293b7b0b204389da42fd1bed3c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Escudo: {fileID: 8024069667225759447}
-  playerMovement: {fileID: 0}
-  escudoActive: 0
 --- !u!54 &4273872276590563767
 Rigidbody:
   m_ObjectHideFlags: 0
