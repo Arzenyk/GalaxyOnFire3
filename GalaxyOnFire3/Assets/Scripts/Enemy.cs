@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    public GameObject escudo;
+    public PlayerShield playerShield; // Referencia al script PlayerShield
+   
     public GameObject explosionPrefab;
+    public GameObject enemy;
 
     public float health = 3f;
     public float moveSpeed = 5f;
@@ -19,6 +22,9 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerShield = escudo.GetComponent<PlayerShield>();
     }
 
     void Update()
@@ -61,13 +67,20 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Projectile"))
         {
-            TakeDamage(1);
+            EnemyTakeDamage(1);
             // Destruir el proyectil
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("Escudo") && playerShield.escudoActive)
+        {
+            enemy.GetComponent<Enemy>().EnemyTakeDamage(10f);
+            Debug.Log("Golpe con escudo");
+        }
+
     }
 
-    void TakeDamage(float amount)
+    public void EnemyTakeDamage(float amount)
     {
         health -= amount;
         if (health <= 0)

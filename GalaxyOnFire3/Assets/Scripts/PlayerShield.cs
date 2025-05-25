@@ -6,6 +6,7 @@ public class PlayerShield : MonoBehaviour
     public GameObject Escudo;
     private bool controlsLocked = false;
     public PlayerMovement playerMovement;
+    public bool escudoActive;
 
     // Este método se llama desde el botón de Escudo
     public void Shield()
@@ -13,12 +14,14 @@ public class PlayerShield : MonoBehaviour
         if (controlsLocked)
             return;
 
-        Invoke("DeactivateObject", 3f);
+        Invoke("DeactivateObject", 100f);
         Escudo.gameObject.SetActive(true);
+        escudoActive = true;
     }
-    void DeactivateObject()
+    public void DeactivateObject()
     {
-        Escudo.gameObject.SetActive(false); // Deactivate after 3 seconds
+        Escudo.gameObject.SetActive(false); // Deactivate
+        escudoActive = false;
     }
 
     public void LockControls()

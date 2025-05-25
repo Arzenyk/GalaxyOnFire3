@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,19 +16,23 @@ public class PlayerHealth : MonoBehaviour
     public PlayerShield playerShield;
     public PlayerShooting playerShooting;
     public GameObject player;
+    public Enemy enemy;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("EnemyProjectile"))
+        if (other.CompareTag("EnemyProjectile") && playerShield.escudoActive) // Use the instance 'playerShield' instead of the class name
+        {
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("EnemyProjectile")) // Add an else condition to handle the case when the shield is not active
         {
             Destroy(other.gameObject);
             TakeDamage(1);
         }
 
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && playerShield.escudoActive)
         {
-            //Destroy(other.gameObject);
-            TakeDamage(1);
+            TakeDamage(0);
         }
     }
 
