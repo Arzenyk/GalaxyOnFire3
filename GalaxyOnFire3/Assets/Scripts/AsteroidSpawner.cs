@@ -28,7 +28,16 @@ public class AsteroidSpawner : MonoBehaviour
         Quaternion randomRot = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
         Instantiate(asteroidPrefab, spawnPos, randomRot);
-        Instantiate(asteroidPrefab2, spawnPos, randomRot);
+
+        // Posición aleatoria frente al jugador
+        Vector3 spawnPos2 = player.position + player.forward * spawnDistance;
+        spawnPos2 += new Vector3(Random.Range(-spawnRange, spawnRange), Random.Range(-spawnRange, spawnRange), 0f);
+
+        // Rotación aleatoria para que vayan en distintas direcciones
+        Quaternion randomRot2 = Quaternion.Euler(0, Random.Range(0, 360), 0);
+
+        Instantiate(asteroidPrefab2, spawnPos2, randomRot2);
+
     }
 }
 

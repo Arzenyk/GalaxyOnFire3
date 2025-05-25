@@ -20,13 +20,12 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("EnemyProjectile") && playerShield.escudoActive) // Use the instance 'playerShield' instead of the class name
+        if (other.CompareTag("EnemyProjectile") && playerShield.escudoActive)
         {
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("EnemyProjectile")) // Add an else condition to handle the case when the shield is not active
         {
-            Destroy(other.gameObject);
             TakeDamage(1);
         }
 
