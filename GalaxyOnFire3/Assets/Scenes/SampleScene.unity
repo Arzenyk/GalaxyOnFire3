@@ -1881,8 +1881,8 @@ MonoBehaviour:
   asteroidPrefab2: {fileID: 1822345149752838, guid: 45b62242ff99b0a48a47f713cd6d1687,
     type: 3}
   spawnRate: 1
-  spawnDistance: 300
-  spawnRange: 100
+  spawnDistance: 1000
+  spawnRange: 1000
 --- !u!4 &992753854
 Transform:
   m_ObjectHideFlags: 0
@@ -3482,7 +3482,7 @@ Transform:
   m_GameObject: {fileID: 1516245210}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.006, y: -0.213, z: 13.631}
+  m_LocalPosition: {x: -0.006, y: -0.213, z: 11.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10360,7 +10360,7 @@ MonoBehaviour:
     type: 3}
   shootPoint: {fileID: 1516245211}
   shootForce: 500
-  playerMovement: {fileID: 7729626680525962308}
+  playerMovement: {fileID: 0}
 --- !u!114 &7729626680525962308
 MonoBehaviour:
   m_ObjectHideFlags: 0
